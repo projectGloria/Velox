@@ -1,0 +1,27 @@
+[workspace]
+resolver = "2"
+members = ["crates/velox-core", "crates/velox-cli", "crates/velox-gui"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+license = "MIT"
+repository = "https://github.com/nihil/velox"
+
+[workspace.dependencies]
+velox-core = { path = "crates/velox-core" }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+debug = 1
+
+# Benchmarks and the indexer are unusable at opt-level 0; give dev builds real speed.
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3

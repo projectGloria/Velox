@@ -1,0 +1,16 @@
+[package]
+name = "velox-cli"
+description = "Velox command-line harness: build an index, run queries, print timings."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+# Not `velox`: Windows filenames are case-insensitive, so a `velox.exe`
+# here would collide with the GUI's `Velox.exe` in the same output directory.
+[[bin]]
+name = "velox-cli"
+path = "src/main.rs"
+
+[dependencies]
+velox-core.workspace = true
